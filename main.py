@@ -11,7 +11,7 @@ os.makedirs("submisiones", exist_ok=True)
 @app.post("/registro")
 async def recibir_datos(request: Request):
     data = await request.json()
-    instagram_url = data.get("link instagram bio.")  # Esto depende del nombre exacto del campo en Tally
+    instagram_url = list(data.values())[0]  # coge el primer valor que llegue
 
     if not instagram_url:
         return JSONResponse(status_code=400, content={"error": "No se encontró ninguna URL"})
